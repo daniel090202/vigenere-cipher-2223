@@ -1,14 +1,10 @@
-# Python code to implement
-# Vigenere Cipher
+# Python code to implement Vigenere Cipher.
 
-# This function generates the
-# key in a cyclic manner until
-# it's length isn't equal to
-# the length of original text
+# This function generates the key in a cyclic manner until it's length isn't equal to the length of original text.
 def generateKey(string, key):
 	key = list(key)
 
-	if len(string) == len(key):
+	if len(key) >= len(string):
 		return(key)
 	else:
 		for i in range(len(string) - len(key)):
@@ -16,9 +12,7 @@ def generateKey(string, key):
 
 	return("" . join(key))
 	
-# This function returns the
-# encrypted text generated
-# with the help of the key
+# This function returns the encrypted text generated with the help of the key.
 def cipherText(string, key):
 	cipher_text = []
 
@@ -29,9 +23,8 @@ def cipherText(string, key):
 
 	return("" . join(cipher_text))
 	
-# This function decrypts the
-# encrypted text and returns
-# the original text
+# This function decrypts the encrypted text and returns the original text.
+
 def originalText(cipher_text, key):
 	orig_text = []
 
@@ -44,8 +37,8 @@ def originalText(cipher_text, key):
 	
 # Driver code
 if __name__ == "__main__":
-	string = "GEEKSFORGEEKS"
-	keyword = "AYUSH"
+	string = "NGUYENLEMINHKHANH"
+	keyword = "CODE"
 
 	key = generateKey(string, keyword)
 	cipher_text = cipherText(string,key)
