@@ -20,6 +20,8 @@ def cipherText(string, key):
 		x = (ord(string[i]) + ord(key[i])) % 26
 		x += ord('A')
 		cipher_text.append(chr(x))
+		print(string[i] + " (" + str(ord(string[i])) + ") " + " + " + key[i] + " (" + str(ord(key[i])) + ") " + " = " + str(((ord(string[i]) + ord(key[i])) % 26)))
+		print(str(x) + ", " + chr(x))
 
 	return("" . join(cipher_text))
 	
