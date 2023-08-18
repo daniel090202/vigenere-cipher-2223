@@ -1,50 +1,58 @@
-# Python code to implement Vigenere Cipher.
-
-# This function generates the key in a cyclic manner until it's length isn't equal to the length of original text.
-def generateKey(string, key):
+def generate_key(original_text, key):
 	key = list(key)
 
-	if len(key) >= len(string):
+	if len(key) >= len(original_text):
 		return(key)
 	else:
-		for i in range(len(string) - len(key)):
+		for i in range(len(original_text) - len(key)):
 			key.append(key[i % len(key)])
 
 	return("" . join(key))
 	
-# This function returns the encrypted text generated with the help of the key.
-def cipherText(string, key):
+def get_cipher_text(original_text, key):
 	cipher_text = []
 
-	for i in range(len(string)):
-		x = (ord(string[i]) + ord(key[i])) % 26
+	for i in range(len(original_text)):
+		x = (ord(original_text[i]) + ord(key[i])) % 26
 		x += ord('A')
 		cipher_text.append(chr(x))
-		print(string[i] + " (" + str(ord(string[i])) + ") " + " + " + key[i] + " (" + str(ord(key[i])) + ") " + " = " + str(((ord(string[i]) + ord(key[i])) % 26)))
-		print(str(x) + ", " + chr(x))
 
 	return("" . join(cipher_text))
 	
-# This function decrypts the encrypted text and returns the original text.
-
-def originalText(cipher_text, key):
-	orig_text = []
+def get_original_text(cipher_text, key):
+	original_text = []
 
 	for i in range(len(cipher_text)):
 		x = (ord(cipher_text[i]) - ord(key[i]) + 26) % 26
 		x += ord('A')
-		orig_text.append(chr(x))
+		original_text.append(chr(x))
 
-	return("" . join(orig_text))
-	
-# Driver code
+	return("" . join(original_text))
+
 if __name__ == "__main__":
-	string = "NGUYENLEMINHKHANH"
-	keyword = "CODE"
+	print("Press 1: Encryption")
+	print("Press 2: Decryption")
 
-	key = generateKey(string, keyword)
-	cipher_text = cipherText(string,key)
-    
-	print("Ciphertext :", cipher_text)
-	print("Original/Decrypted Text :", originalText(cipher_text, key))
+	number = input("Your choice: ")
+
+	if(number == "1"):
+		original_text = input("Your input: ")
+		keyword = input("Your keyword: ")
+
+		key = generate_key(original_text, keyword)
+		cipher_text = get_cipher_text(original_text,key)
+
+		print("Decryption: ", cipher_text)
+	elif(number == "2"):
+		cipher_text = input("Your input: ")
+		keyword = input("Your keyword: ")
+
+		key = generate_key(cipher_text, keyword)
+		original_text = get_original_text(cipher_text,key)
+
+		print("Decryption: ", original_text)
+	
+
+
+	
 
